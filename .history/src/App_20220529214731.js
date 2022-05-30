@@ -8,7 +8,7 @@ function App() {
       <br />
 
       <Setup />
-    </div>s
+    </div>
   )
 }
 

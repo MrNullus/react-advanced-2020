@@ -18,20 +18,12 @@ const Item = () => {
   const [size, setSize] = useState(window.innerWidth);
   const checkSize = () => {
     setSize(window.innerWidth);
-  };
-
-  useEffect(() => { 
-    window.addEventListener('resize', checkSize);
-
-    return () => {
-      window.removeEventListener('resize', checkSize);
-    }
-  }, []);
+  }
 
   return (
     <div style={{ marginTop: '2rem' }}>
       <h1>window</h1>
-      <h2>Size: {size}px</h2>
+      <h2>Size:</h2>
     </div>
   );
 }

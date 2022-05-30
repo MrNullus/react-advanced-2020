@@ -22,16 +22,12 @@ const Item = () => {
 
   useEffect(() => { 
     window.addEventListener('resize', checkSize);
-
-    return () => {
-      window.removeEventListener('resize', checkSize);
-    }
   }, []);
 
   return (
     <div style={{ marginTop: '2rem' }}>
       <h1>window</h1>
-      <h2>Size: {size}px</h2>
+      <h2>Size:</h2>
     </div>
   );
 }

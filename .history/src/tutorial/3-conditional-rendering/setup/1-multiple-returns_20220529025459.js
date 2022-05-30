@@ -10,20 +10,9 @@ const MultipleReturns = () => {
     setIsLoading(true) ;
 
     fetch(url)
-      .then((response) => {
-        if (response.status >= 200 && response.status <= 299) {
-          return response.json();
-
-        } else {
-          setIsLoading(false);
-          setIsError(true);
-
-          throw new Error(response.statusText);
-        }
-      })
+      .then((response) => response.json())
       .then((user) => {
         const { login } = user;
-        
         setUser(login);
         setIsLoading(false);
       })

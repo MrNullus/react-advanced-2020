@@ -1,19 +1,21 @@
 import React, { useState, useEffect } from 'react';
 const url = 'https://api.github.com/users/QuincyLarson';
+
 const MultipleReturns = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
   const [user, setUser] = useState('default user');
 
   useEffect(() => {
+    setIsLoading(true) ;
+
     fetch(url)
-      .then((resp) => {
-        if (resp.status >= 200 && resp.status <= 299) {
-          return resp.json();
+      .then((response) => {
+        if (response.status >= 200 && response.status <= 299) {
+          return response.json();
         } else {
           setIsLoading(false);
           setIsError(true);
-          throw new Error(resp.statusText);
         }
       })
       .then((user) => {
@@ -27,20 +29,22 @@ const MultipleReturns = () => {
   if (isLoading) {
     return (
       <div>
-        <h1>Loading...</h1>
+        <h2>Loading...</h2>
       </div>
     );
   }
+
   if (isError) {
     return (
       <div>
-        <h1>Error....</h1>
+        <h2>Error...</h2>
       </div>
     );
   }
+
   return (
     <div>
-      <h1>{user}</h1>
+      {user}, Welcome
     </div>
   );
 };
