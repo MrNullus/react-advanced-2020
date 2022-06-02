@@ -73,7 +73,8 @@ const ControlledInputs = () => {
                 <p>{email}</p>
               </div>
             )
-        })}
+          })
+        }
 
       </article>
     </>
