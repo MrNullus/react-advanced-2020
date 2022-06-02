@@ -17,14 +17,10 @@ const ControlledInputs = () => {
   });
   const [people, setPeople] = useState([]);
 
-  const handleChange = (e) => {
-    
-  }
-
   return (
     <>
       <article>
-        <form className='form'>
+        <form className='form' onSubmit={handleSubmit}>
           <div className='form-control'>
             <label htmlFor='firstName'>Name : </label>
             <input
@@ -32,7 +28,7 @@ const ControlledInputs = () => {
               id='firstName'
               name='firstName'
               value={person.firstName}
-              onChange={handleChange}
+              onChange={(e) => setFirstName(e.target.value)}
             />
           </div>
           <div className='form-control'>
@@ -42,7 +38,7 @@ const ControlledInputs = () => {
               id='email'
               name='email'
               value={person.email}
-              onChange={handleChange}
+              onChange={(e) => setEmail(e.target.value)}
             />
           </div>
           <div className='form-control'>
@@ -52,11 +48,11 @@ const ControlledInputs = () => {
               id='age'
               name='age'
               value={person.age}
-              onChange={handleChange}
+              onChange={(e) => setAge(e.target.value)}
             />
           </div>
 
-          <button type='submit' onClick={handleSubmit}>add person</button>
+          <button type='submit'>add person</button>
         </form>
 
         

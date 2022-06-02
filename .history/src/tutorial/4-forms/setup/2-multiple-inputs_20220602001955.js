@@ -17,7 +17,7 @@ const ControlledInputs = () => {
   });
   const [people, setPeople] = useState([]);
 
-  const handleChange = (e) => {
+  const handleChange = () => {
     
   }
 
@@ -56,7 +56,7 @@ const ControlledInputs = () => {
             />
           </div>
 
-          <button type='submit' onClick={handleSubmit}>add person</button>
+          <button type='submit'>add person</button>
         </form>
 
         

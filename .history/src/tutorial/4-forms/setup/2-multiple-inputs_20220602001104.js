@@ -7,32 +7,37 @@ import React, { useState } from 'react';
 // dynamic object keys
 
 const ControlledInputs = () => {
-  // const [firstName, setFirstName] = useState('');
-  // const [email, setEmail] = useState('');
-  // const [age, setAge] = useState('');
-  const [person, setPerson] = useState({
-    firstName: '',
-    email: '',
-    age: ''
-  });
+  const [firstName, setFirstName] = useState('');
+  const [email, setEmail] = useState('');
+  const [age, setAge] = useState('');
   const [people, setPeople] = useState([]);
 
-  const handleChange = (e) => {
-    
-  }
-
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (firstName && email) {
+      const person = { id: new Date().getTime().toString(), firstName, email };
+      console.log(person);
+      setPeople((people) => {
+        return [...people, person];
+      });
+      setFirstName('');
+      setEmail('');
+    } else {
+      console.log('empty values');
+    }
+  };
   return (
     <>
       <article>
-        <form className='form'>
+        <form className='form' onSubmit={handleSubmit}>
           <div className='form-control'>
             <label htmlFor='firstName'>Name : </label>
             <input
               type='text'
               id='firstName'
               name='firstName'
-              value={person.firstName}
-              onChange={handleChange}
+              value={firstName}
+              onChange={(e) => setFirstName(e.target.value)}
             />
           </div>
           <div className='form-control'>
@@ -41,8 +46,8 @@ const ControlledInputs = () => {
               type='email'
               id='email'
               name='email'
-              value={person.email}
-              onChange={handleChange}
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
           </div>
           <div className='form-control'>
@@ -51,12 +56,12 @@ const ControlledInputs = () => {
               type='text'
               id='age'
               name='age'
-              value={person.age}
-              onChange={handleChange}
+              value={age}
+              onChange={(e) => setAge(e.target.value)}
             />
           </div>
 
-          <button type='submit' onClick={handleSubmit}>add person</button>
+          <button type='submit'>add person</button>
         </form>
 
         
