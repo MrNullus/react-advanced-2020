@@ -1,6 +1,22 @@
 import React, { useState, useReducer } from 'react';
 import Modal from './Modal';
-import { reducer } from './Reducer';
+import { data } from '../../../data';
+
+// reducer function
+const reducer = (state, action) => {
+  if (action.type === 'ADD_PERSON') {
+    const newItems = { ...state.items, action.payload };
+
+    return {
+      ...state, // return the current state
+      people: newItems,
+      isModalOpen: true,
+      modalContent: 'item added'
+    };
+  }
+
+  throw new Error('no matching action type');
+}; 
 
 const defaultState = {
   people: [],
@@ -21,16 +37,12 @@ const Index = () => {
         name
       };
 
-      dispatch({ type: 'ADD_PERSON', payload: newItem }); // dispatch the action
-      setName('');
+      dispatch({ type: 'ADD_PERSON', payload: nweItem });
     } else {
-      dispatch({ type: 'NOT_VALUE' }); // dispatch a random action
+      dispatch({ type: 'RANDOM' });
     }
   };
 
-  const closeModal = () => {
-    dispatch({ type: 'CLOSE_MODAL' });
-  }
   return (
     <>
       { state.isModalOpen && <Modal modalContent={state.modalContent} /> }
@@ -47,17 +59,10 @@ const Index = () => {
         <button type="submit">add</button> 
       </form>
 
-      {state.people.map((person) => {
+      {state.people.map((person, index) => {
         return (
-          <div key={person.id} className="item">
-            <h4>{person.name}</h4>
-            <button 
-              onClick={() => 
-                dispatch({ type: 'REMOVE_ITEM', payload: person.id })
-              }
-            >
-              Remove
-            </button>
+          <div key={person.id}>
+              <h4>{person.name}</h4>
           </div>
         );
       })}

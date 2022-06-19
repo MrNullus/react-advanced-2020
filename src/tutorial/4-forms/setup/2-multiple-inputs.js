@@ -10,6 +10,7 @@ const ControlledInputs = () => {
   // const [firstName, setFirstName] = useState('');
   // const [email, setEmail] = useState('');
   // const [age, setAge] = useState('');
+
   const [person, setPerson] = useState({
     firstName: '',
     email: '',
@@ -18,8 +19,21 @@ const ControlledInputs = () => {
   const [people, setPeople] = useState([]);
 
   const handleChange = (e) => {
-    
-  }
+    const name = e.target.name;
+    const value = e.target.value;
+
+    setPerson({ ...person, [name]: value });
+  };
+
+  const handleSubmit = (e) => { 
+    e.preventDefault();
+
+    if (person.firstName && person.email && person.age) {
+      const newPerson = { ...person, id: new Date().getTime().toString()};
+      setPerson([...person, newPerson]);
+      setPeople({ firstName: '', email: '', age: '' });
+    }
+  };
 
   return (
     <>

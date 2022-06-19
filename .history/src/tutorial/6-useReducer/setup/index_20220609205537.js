@@ -1,9 +1,12 @@
 import React, { useState, useReducer } from 'react';
 import Modal from './Modal';
-import { reducer } from './Reducer';
+import { data } from '../../../data';
+
+// reducer function
+const reducer = (state, action) => {};
 
 const defaultState = {
-  people: [],
+  people: data,
   isModalOpen: false,
   modalContent: 'hello sucker'
 };
@@ -15,22 +18,13 @@ const Index = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (name) { 
-      const newItem = {
-        id: Date.now().geTime().toString(),
-        name
-      };
+    if (name) {
 
-      dispatch({ type: 'ADD_PERSON', payload: newItem }); // dispatch the action
-      setName('');
     } else {
-      dispatch({ type: 'NOT_VALUE' }); // dispatch a random action
+
     }
   };
 
-  const closeModal = () => {
-    dispatch({ type: 'CLOSE_MODAL' });
-  }
   return (
     <>
       { state.isModalOpen && <Modal modalContent={state.modalContent} /> }
@@ -47,17 +41,10 @@ const Index = () => {
         <button type="submit">add</button> 
       </form>
 
-      {state.people.map((person) => {
+      {state.people.map((person, index) => {
         return (
-          <div key={person.id} className="item">
-            <h4>{person.name}</h4>
-            <button 
-              onClick={() => 
-                dispatch({ type: 'REMOVE_ITEM', payload: person.id })
-              }
-            >
-              Remove
-            </button>
+          <div key={person.id}>
+              <h4>{person.name}</h4>
           </div>
         );
       })}
