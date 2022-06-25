@@ -1,5 +1,5 @@
-import React from 'react'
-import Setup from './tutorial/10-prop-types/setup/index';
+import React from 'react';
+import Setup from './tutorial/11-react-router/setup/index';
 
 function App() {
   return (
@@ -9,7 +9,7 @@ function App() {
 
       <Setup />
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
