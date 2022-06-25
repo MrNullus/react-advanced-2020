@@ -82,6 +82,7 @@ const SingleProduct = ({ fields, addToCart }) => {
       <img src={image} alt={name} />
       <h4>{name}</h4>
       <p>${price}</p>
+      <button onClick={addToCart}>add to cart</button>
     </article>
   )
 }
